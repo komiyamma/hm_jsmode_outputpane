@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.0
+ * outputpane v1.0.1
  */
 
 declare var module: { filename: string, directory: string, exports: any };
@@ -59,11 +59,11 @@ declare var OutputPane: any;
         return ret;
     }
 
-    function _setBaseDir(): number {
+    function _setBaseDir(dirpath: string): number {
         op_dllobj = get_op_dllobj();
 
         if (op_dllobj) {
-            return op_dllobj.dllFunc.SetBaseDir(hidemaruGlobal.hidemaruhandle(0));
+            return op_dllobj.dllFunc.SetBaseDir(hidemaruGlobal.hidemaruhandle(0), dirpath);
         }
 
         return 0;

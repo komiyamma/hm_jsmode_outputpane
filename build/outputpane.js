@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.0
+ * outputpane v1.0.1
  */
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
@@ -40,10 +40,10 @@
         var ret = hidemaruGlobal.sendmessage(handle, 0x111 /*WM_COMMAND*/, 1009, 0); //1009=クリア
         return ret;
     }
-    function _setBaseDir() {
+    function _setBaseDir(dirpath) {
         op_dllobj = get_op_dllobj();
         if (op_dllobj) {
-            return op_dllobj.dllFunc.SetBaseDir(hidemaruGlobal.hidemaruhandle(0));
+            return op_dllobj.dllFunc.SetBaseDir(hidemaruGlobal.hidemaruhandle(0), dirpath);
         }
         return 0;
     }
