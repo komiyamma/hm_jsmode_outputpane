@@ -1,4 +1,9 @@
-///<reference path="../hm_jsmode_no_global.d.ts"/>
+/*
+ * Copyright (C) 2022 Akitsugu Komiyama
+ * under the MIT License
+ *
+ * outputpane v1.0.0
+ */
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
     var op_dllobj = null;
