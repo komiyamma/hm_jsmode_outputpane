@@ -1,0 +1,2 @@
+# hm_jsmode_outputpane
+秀丸のjsmodeのアウトプットパネル用の関数群
