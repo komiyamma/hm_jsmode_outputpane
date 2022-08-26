@@ -43,7 +43,6 @@ declare namespace OutputPane {
      */
     function pop(): number;
 
-
     /**
      * アウトプット枠内の文字列をクリアするメソッドとなります。    
      *
