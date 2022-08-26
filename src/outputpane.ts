@@ -87,14 +87,18 @@ declare var OutputPane: any;
         return ret;
     }
 
+    var _OutputPane = {
+        output : _output,
+        push : _push,
+        pop : _pop,
+        clear : _clear,
+        getWindowHandle : _getWindowHandle,
+        setBaseDir : _setBaseDir,
+        sendMessage: _sendMessage,
+    };
+
     if (typeof (module) != 'undefined' && module.exports) {
-        module.exports.output = _output;
-        module.exports.push = _push;
-        module.exports.pop = _pop;
-        module.exports.clear = _clear;
-        module.exports.getWindowHandle = _getWindowHandle;
-        module.exports.setBaseDir = _setBaseDir;
-        module.exports.sendMessage = _sendMessage;
+        module.exports = _OutputPane;
     } else {
         if (typeof (OutputPane) != 'undefined') {
             if (OutputPane.guid == null || OutputPane.guid != guid) {
@@ -107,15 +111,7 @@ declare var OutputPane: any;
             }
         }
 
-        OutputPane = {
-            output : _output,
-            push : _push,
-            pop : _pop,
-            clear : _clear,
-            getWindowHandle : _getWindowHandle,
-            setBaseDir : _setBaseDir,
-            sendMessage: _sendMessage,
-            "guid" : guid
-        };
+        OutputPane = _OutputPane;
+        OutputPane.guid = guid;
     }
 })();
