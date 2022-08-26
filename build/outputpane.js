@@ -34,11 +34,6 @@
         }
         return text;
     }
-    function _outputline(msg) {
-        var ret = _output(msg);
-        _output("\n");
-        return ret;
-    }
     function _output(msg) {
         op_dllobj = get_op_dllobj();
         if (op_dllobj) {
@@ -72,6 +67,11 @@
             return op_dllobj.dllFunc.Output(hidemaruGlobal.hidemaruhandle(0), modify_msg);
         }
         return 0;
+    }
+    function _outputline(msg) {
+        var ret = _output(msg);
+        _output("\n");
+        return ret;
     }
     function _push() {
         op_dllobj = get_op_dllobj();
