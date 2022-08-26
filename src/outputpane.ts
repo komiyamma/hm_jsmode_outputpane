@@ -55,7 +55,7 @@ declare var OutputPane: any;
                 modify_msg = msg
             } else if (typeof (msg) == "object") {
                 try {
-                    modify_msg = _stringify(msg, 2) + "\r\n";
+                    modify_msg = _stringify(msg, 2);
                 } catch(e) {
                     modify_msg = msg.toString();
                 }
