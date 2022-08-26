@@ -41,7 +41,7 @@ declare var OutputPane: any;
         return text;
     }
 
-    function _output(msg: object|string|null): number {
+    function _output(msg: any): number {
 
         op_dllobj = get_op_dllobj();
 
@@ -72,6 +72,12 @@ declare var OutputPane: any;
         }
 
         return 0;
+    }
+
+    function _outputline(msg: any) {
+        var ret = _output(msg);
+        _output("\n");
+        return ret;
     }
 
     function _push(): number {
@@ -138,6 +144,7 @@ declare var OutputPane: any;
 
     var _OutputPane = {
         output: _output,
+        outputline: _outputline,
         push: _push,
         pop: _pop,
         clear: _clear,

@@ -34,6 +34,11 @@
         }
         return text;
     }
+    function _outputline(msg) {
+        var ret = _output(msg);
+        _output("\n");
+        return ret;
+    }
     function _output(msg) {
         op_dllobj = get_op_dllobj();
         if (op_dllobj) {
@@ -115,6 +120,7 @@
     }
     var _OutputPane = {
         output: _output,
+        outputline: _outputline,
         push: _push,
         pop: _pop,
         clear: _clear,
