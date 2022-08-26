@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.1
+ * outputpane v1.0.2
  */
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";

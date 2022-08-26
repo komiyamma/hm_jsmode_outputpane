@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.1
+ * outputpane v1.0.2
  */
 
 declare var module: { filename: string, directory: string, exports: any };
