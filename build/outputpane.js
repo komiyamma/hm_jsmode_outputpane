@@ -60,14 +60,17 @@
         var ret = hidemaruGlobal.sendmessage(handle, 0x111 /*WM_COMMAND*/, command_id, 0);
         return ret;
     }
+    var _OutputPane = {
+        output: _output,
+        push: _push,
+        pop: _pop,
+        clear: _clear,
+        getWindowHandle: _getWindowHandle,
+        setBaseDir: _setBaseDir,
+        sendMessage: _sendMessage,
+    };
     if (typeof (module) != 'undefined' && module.exports) {
-        module.exports.output = _output;
-        module.exports.push = _push;
-        module.exports.pop = _pop;
-        module.exports.clear = _clear;
-        module.exports.getWindowHandle = _getWindowHandle;
-        module.exports.setBaseDir = _setBaseDir;
-        module.exports.sendMessage = _sendMessage;
+        module.exports = _OutputPane;
     }
     else {
         if (typeof (OutputPane) != 'undefined') {
@@ -79,15 +82,7 @@
                 return;
             }
         }
-        OutputPane = {
-            output: _output,
-            push: _push,
-            pop: _pop,
-            clear: _clear,
-            getWindowHandle: _getWindowHandle,
-            setBaseDir: _setBaseDir,
-            sendMessage: _sendMessage,
-            "guid": guid
-        };
+        OutputPane = _OutputPane;
+        OutputPane.guid = guid;
     }
 })();
