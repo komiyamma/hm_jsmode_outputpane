@@ -54,9 +54,17 @@ declare var OutputPane: any;
             } else if (typeof (msg) == "string") {
                 modify_msg = msg
             } else if (typeof (msg) == "object") {
-                modify_msg = _stringify(msg, 2) + "\r\n";
+                try {
+                    modify_msg = _stringify(msg, 2) + "\r\n";
+                } catch(e) {
+                    modify_msg = msg.toString();
+                }
             } else {
-                modify_msg = _stringify(msg, 2);
+                try {
+                    modify_msg = _stringify(msg, 2);
+                } catch(e) {
+                    modify_msg = msg.toString();
+                }
             }
 
             modify_msg = modify_msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
