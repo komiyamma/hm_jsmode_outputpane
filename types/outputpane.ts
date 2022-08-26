@@ -2,7 +2,7 @@
  * @file 秀丸のjsmode用のTypeScript定義ファイル
  * @author Akitsugu Komiyama
  * @license MIT
- * @version v1.0.2
+ * @version v1.0.3
  */
 
 declare namespace OutputPane {
@@ -12,12 +12,14 @@ declare namespace OutputPane {
      * 
      * @param msg
      * アウトプット枠に表示したい文字列を指定します。    
-     * 改行は、「\n」でも「\r\n」でもどちらでも大丈夫です。
+     * 改行は、「\n」でも「\r\n」でもどちらでも大丈夫です。    
+     * 
+     * 文字列である必要はなく、数値やオブジェクトにも対応しています。    
      *
      * @returns
      * 成功したら0以外を返す、失敗したら0を返す。
      */
-    function output(msg: string): number;
+    function output(msg: object): number;
 
     /**
      * アウトプット枠内の文字列を一時退避するメソッドとなります。    
