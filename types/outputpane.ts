@@ -19,7 +19,7 @@ declare namespace OutputPane {
      * @returns
      * 成功したら0以外を返す、失敗したら0を返す。
      */
-    function output(msg: object): number;
+    function output(msg: any): number;
 
     /**
      * アウトプット枠内の文字列を一時退避するメソッドとなります。    
