@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.3
+ * outputpane v1.0.4
  */
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
@@ -21,9 +21,7 @@
         return value;
     }
     function _stringify(obj, space) {
-        if (space === void 0) {
-            space = 2;
-        }
+        if (space === void 0) { space = 2; }
         var text = "";
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;

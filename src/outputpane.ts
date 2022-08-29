@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.3
+ * outputpane v1.0.4
  */
 
 declare var module: { filename: string, directory: string, exports: any };
@@ -22,22 +22,24 @@ declare var OutputPane: any;
     }
 
     // 関数の時に、文字列に治す
-    function replacer(key, value) {
+    function replacer(key: string, value: any) {
         if (typeof value === "function") {
             return value.toString();
         }
         return value;
     }
-    function _stringify(obj, space) {
-        if (space === void 0) { space = 2; }
-        var text = "";
+
+    function _stringify(obj: any, space: number | string = 2): string | undefined {
+        var text: string = "";
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;
         }
         var text = JSON.stringify(obj, replacer, space);
+
         if (text) {
             text = text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
         }
+
         return text;
     }
 
