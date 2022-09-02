@@ -2,7 +2,7 @@
  * @file 秀丸のjsmode用のTypeScript定義ファイル
  * @author Akitsugu Komiyama
  * @license MIT
- * @version v1.0.3
+ * @version v1.0.5
  */
 
 declare namespace OutputPane {
