@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.5
+ * outputpane v1.0.6
  */
 
 declare var module: { filename: string, directory: string, exports: any };
@@ -12,13 +12,50 @@ declare var OutputPane: any;
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
 
     var op_dllobj: hidemaru.ILoadDllResult = null;
+    var selfdir: string = null;
     var hidemaruhandlezero = hidemaruGlobal.hidemaruhandle(0); // このタイミング必須
+
     function get_op_dllobj(): hidemaru.ILoadDllResult {
         if (!op_dllobj) {
             op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
         }
 
         return op_dllobj;
+    }
+
+    interface SelfDllInfo {
+        filename?: string,
+        directory?: string,
+    }
+    // execjsで読み込まれていたら、{filename,directory}のそれぞれのプロパティに有効な値が入る
+    function get_including_by_execjs(): SelfDllInfo {
+
+        var cjf = hidemaruGlobal.currentjsfilename();
+        var cmf = hidemaruGlobal.currentmacrofilename();
+        if (cjf != cmf) {
+            var dir: string = cjf.replace(/[\/\\][^\/\\]+?$/, "");
+            return {
+                "filename": cjf,
+                "directory": dir
+            };
+        }
+        return {};
+    }
+
+    var selfinfo: SelfDllInfo = get_including_by_execjs();
+    if (typeof (selfinfo.directory) != 'undefined') {
+        selfdir = selfinfo.directory;
+    } else if (typeof (module) != 'undefined' && module.exports) {
+        selfdir = module.directory;
+    } else {
+        _output("outputpane.dllモジュールが想定されていない読み込み方法で利用されています。\r\n");
+        return;
+    }
+
+    var op_com = hidemaru.createObject(selfdir + "\\" + "outputpane.dll", "OutputPane.OutputPane");
+    if (!op_com) {
+        _output("hidemaruexeapi.dllが読み込めませんでした。\r\n");
+        return;
     }
 
     // 関数の時に、文字列に治す
@@ -103,9 +140,7 @@ declare var OutputPane: any;
     }
 
     function _clear(): number {
-        var handle = _getWindowHandle();
-        var ret = hidemaruGlobal.sendmessage(handle, 0x111 /*WM_COMMAND*/, 1009, 0); //1009=クリア
-        return ret;
+        return _sendMessage(1009);
     }
 
     function _setBaseDir(dirpath: string): number {
@@ -139,9 +174,11 @@ declare var OutputPane: any;
             return 0;
         }
 
-        let handle = _getWindowHandle();
-        let ret = hidemaruGlobal.sendmessage(handle, 0x111/*WM_COMMAND*/, command_id, 0);
-        return ret;
+        if (op_com) {
+            let ret = op_com.OutputPane_SendMessage(command_id);
+            return ret;
+        }
+        return 0;
     }
 
     var _OutputPane = {

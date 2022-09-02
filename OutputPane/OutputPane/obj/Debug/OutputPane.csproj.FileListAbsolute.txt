@@ -1,0 +1,6 @@
+C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Debug\OutputPane.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Debug\OutputPane.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\OutputPane\OutputPane\bin\Debug\OutputPane.dll
+C:\Users\admin\source\repos\OutputPane\OutputPane\bin\Debug\OutputPane.pdb
+C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Debug\OutputPane.dll
+C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Debug\OutputPane.pdb
