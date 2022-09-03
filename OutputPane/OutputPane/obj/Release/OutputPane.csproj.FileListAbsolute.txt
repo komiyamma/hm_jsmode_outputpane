@@ -4,3 +4,7 @@ C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Release\OutputPane.csproj.
 C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Release\OutputPane.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Release\OutputPane.dll
 C:\Users\admin\source\repos\OutputPane\OutputPane\obj\Release\OutputPane.pdb
+G:\repogitory\hm_jsmode_outputpane\OutputPane\OutputPane\bin\Release\outputpane.dll
+G:\repogitory\hm_jsmode_outputpane\OutputPane\OutputPane\obj\Release\OutputPane.csproj.AssemblyReference.cache
+G:\repogitory\hm_jsmode_outputpane\OutputPane\OutputPane\obj\Release\OutputPane.csproj.CoreCompileInputs.cache
+G:\repogitory\hm_jsmode_outputpane\OutputPane\OutputPane\obj\Release\outputpane.dll
