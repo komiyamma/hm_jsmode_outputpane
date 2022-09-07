@@ -1,8 +1,9 @@
 /*
- * HmNetCOM ver 2.073
+ * HmNetCOM ver 2.075
  * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
+
 
 using System;
 using System.IO;

@@ -1,8 +1,9 @@
 /*
- * HmNetCOM ver 2.073
+ * HmNetCOM ver 2.075
  * Copyright (C) 2021-2022 Akitsugu Komiyama
  * under the MIT License
  **/
+
 
 using System;
 using System.IO;
@@ -2060,9 +2061,6 @@ namespace HmNetCOM
  * under the MIT License
  **/
 
-<#
- var HmMacroCOMVarGUID = System.Guid.NewGuid().ToString();
-#>
 
 namespace HmNetCOM
 {
@@ -2075,7 +2073,7 @@ namespace HmNetCOM
     }
 
     public partial class HmMacroCOMVar {
-        private const string HmMacroCOMVarInterface = "<#= HmMacroCOMVarGUID #>";
+        private const string HmMacroCOMVarInterface = "9e6befeb-9737-49c3-a42a-9531bbc6801d";
     }
 }
 
