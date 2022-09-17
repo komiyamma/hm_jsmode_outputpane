@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.6
+ * outputpane v1.0.7
  */
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
@@ -47,7 +47,7 @@
     // 関数の時に、文字列に治す
     function replacer(key, value) {
         if (typeof value === "function") {
-            return value.toString();
+            return "[fn]:" + value.toString();
         }
         return value;
     }
