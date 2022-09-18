@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.7
+ * outputpane v1.0.8
  */
 
 declare var module: { filename: string, directory: string, exports: any };
@@ -113,7 +113,7 @@ declare var OutputPane: any;
         return 0;
     }
 
-    function _outputline(msg: any) {
+    function _outputLine(msg: any) {
         var ret = _output(msg);
         _output("\n");
         return ret;
@@ -183,7 +183,7 @@ declare var OutputPane: any;
 
     var _OutputPane = {
         output: _output,
-        outputline: _outputline,
+        outputLine: _outputLine,
         push: _push,
         pop: _pop,
         clear: _clear,

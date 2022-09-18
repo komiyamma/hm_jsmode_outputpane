@@ -2,7 +2,7 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.7
+ * outputpane v1.0.8
  */
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
@@ -97,7 +97,7 @@
         }
         return 0;
     }
-    function _outputline(msg) {
+    function _outputLine(msg) {
         var ret = _output(msg);
         _output("\n");
         return ret;
@@ -149,7 +149,7 @@
     }
     var _OutputPane = {
         output: _output,
-        outputline: _outputline,
+        outputLine: _outputLine,
         push: _push,
         pop: _pop,
         clear: _clear,
