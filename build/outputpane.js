@@ -2,13 +2,14 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.8
+ * outputpane v1.0.9
  */
+/// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
     var op_dllobj = null;
     var selfdir = null;
-    var hidemaruhandlezero = hidemaruGlobal.hidemaruhandle(0); // このタイミング必須
+    var hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
     function get_op_dllobj() {
         if (!op_dllobj) {
             op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
@@ -57,7 +58,7 @@
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;
         }
-        var text = JSON.stringify(obj, replacer, space);
+        text = JSON.stringify(obj, replacer, space);
         if (text) {
             text = text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
         }

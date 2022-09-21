@@ -2,18 +2,19 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.8
+ * outputpane v1.0.9
  */
+/// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 
 declare var module: { filename: string, directory: string, exports: any };
 declare var OutputPane: any;
 
 (function () {
-    var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
+    const guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
 
-    var op_dllobj: hidemaru.ILoadDllResult = null;
-    var selfdir: string = null;
-    var hidemaruhandlezero = hidemaruGlobal.hidemaruhandle(0); // このタイミング必須
+    let op_dllobj: hidemaru.ILoadDllResult = null;
+    let selfdir: string = null;
+    let hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
 
     function get_op_dllobj(): hidemaru.ILoadDllResult {
         if (!op_dllobj) {
@@ -67,11 +68,11 @@ declare var OutputPane: any;
     }
 
     function _stringify(obj: any, space: number | string = 2): string | undefined {
-        var text: string = "";
+        let text: string = "";
         if (typeof (obj) == "undefined") { // typeofで判定する
             return undefined;
         }
-        var text = JSON.stringify(obj, replacer, space);
+        text = JSON.stringify(obj, replacer, space);
 
         if (text) {
             text = text.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
@@ -85,7 +86,7 @@ declare var OutputPane: any;
         op_dllobj = get_op_dllobj();
 
         if (op_dllobj) {
-            var modify_msg: string = "";
+            let modify_msg: string = "";
             if (typeof (msg) == "undefined") {
                 modify_msg = "(undefined)";
             } else if (msg == null) {
@@ -114,7 +115,7 @@ declare var OutputPane: any;
     }
 
     function _outputLine(msg: any) {
-        var ret = _output(msg);
+        let ret = _output(msg);
         _output("\n");
         return ret;
     }
@@ -157,7 +158,7 @@ declare var OutputPane: any;
         return 0;
     }
 
-    var op_windowhandle = null;
+    let op_windowhandle = null;
     function _getWindowHandle(): number {
 
         op_dllobj = get_op_dllobj();
@@ -181,7 +182,7 @@ declare var OutputPane: any;
         return 0;
     }
 
-    var _OutputPane = {
+    let _OutputPane = {
         output: _output,
         outputLine: _outputLine,
         push: _push,
