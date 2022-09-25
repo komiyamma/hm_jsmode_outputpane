@@ -24,6 +24,8 @@ declare var OutputPane: any;
         return op_dllobj;
     }
 
+    get_op_dllobj(); // ここで実行する癖をつけておく。
+
     interface SelfDllInfo {
         filename?: string,
         directory?: string,
@@ -49,13 +51,13 @@ declare var OutputPane: any;
     } else if (typeof (module) != 'undefined' && module.exports) {
         selfdir = module.directory;
     } else {
-        _output("outputpane.dllモジュールが想定されていない読み込み方法で利用されています。\r\n");
+        _output("outputpane.js モジュールが想定されていない読み込み方法で利用されています。\r\n");
         return;
     }
 
     var op_com = hidemaru.createObject(selfdir + "\\" + "outputpane.dll", "OutputPane.OutputPane");
     if (!op_com) {
-        _output("hidemaruexeapi.dllが読み込めませんでした。\r\n");
+        _output("outputpane.dllが読み込めませんでした。\r\n");
         return;
     }
 
@@ -83,35 +85,29 @@ declare var OutputPane: any;
 
     function _output(msg: any): number {
 
-        op_dllobj = get_op_dllobj();
-
-        if (op_dllobj) {
-            let modify_msg: string = "";
-            if (typeof (msg) == "undefined") {
-                modify_msg = "(undefined)";
-            } else if (msg == null) {
-                modify_msg = "(null)";
-            } else if (typeof (msg) == "string") {
-                modify_msg = msg
-            } else if (typeof (msg) == "object") {
-                try {
-                    modify_msg = _stringify(msg, 2);
-                } catch(e) {
-                    modify_msg = msg.toString();
-                }
-            } else {
-                try {
-                    modify_msg = _stringify(msg, 2);
-                } catch(e) {
-                    modify_msg = msg.toString();
-                }
+        let modify_msg: string = "";
+        if (typeof (msg) == "undefined") {
+            modify_msg = "(undefined)";
+        } else if (msg == null) {
+            modify_msg = "(null)";
+        } else if (typeof (msg) == "string") {
+            modify_msg = msg
+        } else if (typeof (msg) == "object") {
+            try {
+                modify_msg = _stringify(msg, 2);
+            } catch(e) {
+                modify_msg = msg.toString();
             }
-
-            modify_msg = modify_msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
-            return op_dllobj.dllFunc.Output(hidemaruhandlezero, modify_msg);
+        } else {
+            try {
+                modify_msg = _stringify(msg, 2);
+            } catch(e) {
+                modify_msg = msg.toString();
+            }
         }
 
-        return 0;
+        modify_msg = modify_msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+        return op_dllobj.dllFunc.Output(hidemaruhandlezero, modify_msg);
     }
 
     function _outputLine(msg: any) {
@@ -121,23 +117,11 @@ declare var OutputPane: any;
     }
 
     function _push(): number {
-        op_dllobj = get_op_dllobj();
-
-        if (op_dllobj) {
-            return op_dllobj.dllFunc.Push(hidemaruhandlezero);
-        }
-
-        return 0;
+        return op_dllobj.dllFunc.Push(hidemaruhandlezero);
     }
 
     function _pop(): number {
-        op_dllobj = get_op_dllobj();
-
-        if (op_dllobj) {
-            return op_dllobj.dllFunc.Push(hidemaruhandlezero);
-        }
-
-        return 0;
+        return op_dllobj.dllFunc.Push(hidemaruhandlezero);
     }
 
     function _clear(): number {
@@ -149,24 +133,12 @@ declare var OutputPane: any;
             return 0;
         }
 
-        op_dllobj = get_op_dllobj();
-
-        if (op_dllobj) {
-            return op_dllobj.dllFunc.SetBaseDir(hidemaruhandlezero, dirpath);
-        }
-
-        return 0;
+        return op_dllobj.dllFunc.SetBaseDir(hidemaruhandlezero, dirpath);
     }
 
     let op_windowhandle = null;
     function _getWindowHandle(): number {
-
-        op_dllobj = get_op_dllobj();
-
-        if (op_dllobj) {
-            op_windowhandle = op_dllobj.dllFunc.GetWindowHandle(hidemaruhandlezero);
-        }
-
+        op_windowhandle = op_dllobj.dllFunc.GetWindowHandle(hidemaruhandlezero);
         return op_windowhandle;
     }
 

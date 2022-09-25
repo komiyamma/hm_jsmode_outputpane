@@ -16,6 +16,7 @@
         }
         return op_dllobj;
     }
+    get_op_dllobj(); // ここで実行する癖をつけておく。
     // execjsで読み込まれていたら、{filename,directory}のそれぞれのプロパティに有効な値が入る
     function get_including_by_execjs() {
         var cjf = hidemaruGlobal.currentjsfilename();
@@ -37,12 +38,12 @@
         selfdir = module.directory;
     }
     else {
-        _output("outputpane.dllモジュールが想定されていない読み込み方法で利用されています。\r\n");
+        _output("outputpane.js モジュールが想定されていない読み込み方法で利用されています。\r\n");
         return;
     }
     var op_com = hidemaru.createObject(selfdir + "\\" + "outputpane.dll", "OutputPane.OutputPane");
     if (!op_com) {
-        _output("hidemaruexeapi.dllが読み込めませんでした。\r\n");
+        _output("outputpane.dllが読み込めませんでした。\r\n");
         return;
     }
     // 関数の時に、文字列に治す
@@ -65,38 +66,34 @@
         return text;
     }
     function _output(msg) {
-        op_dllobj = get_op_dllobj();
-        if (op_dllobj) {
-            var modify_msg = "";
-            if (typeof (msg) == "undefined") {
-                modify_msg = "(undefined)";
-            }
-            else if (msg == null) {
-                modify_msg = "(null)";
-            }
-            else if (typeof (msg) == "string") {
-                modify_msg = msg;
-            }
-            else if (typeof (msg) == "object") {
-                try {
-                    modify_msg = _stringify(msg, 2);
-                }
-                catch (e) {
-                    modify_msg = msg.toString();
-                }
-            }
-            else {
-                try {
-                    modify_msg = _stringify(msg, 2);
-                }
-                catch (e) {
-                    modify_msg = msg.toString();
-                }
-            }
-            modify_msg = modify_msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
-            return op_dllobj.dllFunc.Output(hidemaruhandlezero, modify_msg);
+        var modify_msg = "";
+        if (typeof (msg) == "undefined") {
+            modify_msg = "(undefined)";
         }
-        return 0;
+        else if (msg == null) {
+            modify_msg = "(null)";
+        }
+        else if (typeof (msg) == "string") {
+            modify_msg = msg;
+        }
+        else if (typeof (msg) == "object") {
+            try {
+                modify_msg = _stringify(msg, 2);
+            }
+            catch (e) {
+                modify_msg = msg.toString();
+            }
+        }
+        else {
+            try {
+                modify_msg = _stringify(msg, 2);
+            }
+            catch (e) {
+                modify_msg = msg.toString();
+            }
+        }
+        modify_msg = modify_msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+        return op_dllobj.dllFunc.Output(hidemaruhandlezero, modify_msg);
     }
     function _outputLine(msg) {
         var ret = _output(msg);
@@ -104,18 +101,10 @@
         return ret;
     }
     function _push() {
-        op_dllobj = get_op_dllobj();
-        if (op_dllobj) {
-            return op_dllobj.dllFunc.Push(hidemaruhandlezero);
-        }
-        return 0;
+        return op_dllobj.dllFunc.Push(hidemaruhandlezero);
     }
     function _pop() {
-        op_dllobj = get_op_dllobj();
-        if (op_dllobj) {
-            return op_dllobj.dllFunc.Push(hidemaruhandlezero);
-        }
-        return 0;
+        return op_dllobj.dllFunc.Push(hidemaruhandlezero);
     }
     function _clear() {
         return _sendMessage(1009);
@@ -124,18 +113,11 @@
         if (typeof (dirpath) != "string") {
             return 0;
         }
-        op_dllobj = get_op_dllobj();
-        if (op_dllobj) {
-            return op_dllobj.dllFunc.SetBaseDir(hidemaruhandlezero, dirpath);
-        }
-        return 0;
+        return op_dllobj.dllFunc.SetBaseDir(hidemaruhandlezero, dirpath);
     }
     var op_windowhandle = null;
     function _getWindowHandle() {
-        op_dllobj = get_op_dllobj();
-        if (op_dllobj) {
-            op_windowhandle = op_dllobj.dllFunc.GetWindowHandle(hidemaruhandlezero);
-        }
+        op_windowhandle = op_dllobj.dllFunc.GetWindowHandle(hidemaruhandlezero);
         return op_windowhandle;
     }
     function _sendMessage(command_id) {
