@@ -7,16 +7,9 @@
 /// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 (function () {
     var guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
-    var op_dllobj = null;
+    var op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
     var selfdir = null;
     var hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
-    function get_op_dllobj() {
-        if (!op_dllobj) {
-            op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
-        }
-        return op_dllobj;
-    }
-    get_op_dllobj(); // ここで実行する癖をつけておく。
     // execjsで読み込まれていたら、{filename,directory}のそれぞれのプロパティに有効な値が入る
     function get_including_by_execjs() {
         var cjf = hidemaruGlobal.currentjsfilename();

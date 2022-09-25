@@ -12,19 +12,9 @@ declare var OutputPane: any;
 (function () {
     const guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
 
-    let op_dllobj: hidemaru.ILoadDllResult = null;
+    let op_dllobj: hidemaru.ILoadDllResult = hidemaru.loadDll("HmOutputPane.dll");
     let selfdir: string = null;
     let hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
-
-    function get_op_dllobj(): hidemaru.ILoadDllResult {
-        if (!op_dllobj) {
-            op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
-        }
-
-        return op_dllobj;
-    }
-
-    get_op_dllobj(); // ここで実行する癖をつけておく。
 
     interface SelfDllInfo {
         filename?: string,
