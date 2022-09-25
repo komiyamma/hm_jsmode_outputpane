@@ -106,7 +106,8 @@ declare namespace OutputPane {
      * - 1103 位置：下
      * 
      * @returns
-     * 成功したら0以外を返す、失敗したら0を返す。
+     * 返り値は多くの場合、意味をもたない。    
+     * (win32apiのsendmessageの返り値にそのまま従う)
      */
     function sendMessage(command_id: number): number
 
