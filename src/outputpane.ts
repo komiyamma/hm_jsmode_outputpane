@@ -2,12 +2,13 @@
  * Copyright (C) 2022 Akitsugu Komiyama
  * under the MIT License
  *
- * outputpane v1.0.9
+ * outputpane v1.1.0
  */
 /// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 
-declare var module: { filename: string, directory: string, exports: any };
+declare var module: { exports: any };
 declare var OutputPane: any;
+declare var __dirname: string;
 
 (function () {
     const guid = "{7A0CD246-7F50-446C-B19D-EF2B332A8763}";
@@ -17,8 +18,8 @@ declare var OutputPane: any;
     let hidemaruhandlezero = hidemaru.getCurrentWindowHandle();
 
     interface SelfDllInfo {
-        filename?: string,
-        directory?: string,
+        __filename?: string,
+        __dirname?: string,
     }
     // execjsで読み込まれていたら、{filename,directory}のそれぞれのプロパティに有効な値が入る
     function get_including_by_execjs(): SelfDllInfo {
@@ -28,18 +29,18 @@ declare var OutputPane: any;
         if (cjf != cmf) {
             var dir: string = cjf.replace(/[\/\\][^\/\\]+?$/, "");
             return {
-                "filename": cjf,
-                "directory": dir
+                __filename: cjf,
+                __dirname: dir
             };
         }
         return {};
     }
 
     var selfinfo: SelfDllInfo = get_including_by_execjs();
-    if (typeof (selfinfo.directory) != 'undefined') {
-        selfdir = selfinfo.directory;
+    if (typeof (selfinfo.__dirname) != 'undefined') {
+        selfdir = selfinfo.__dirname;
     } else if (typeof (module) != 'undefined' && module.exports) {
-        selfdir = module.directory;
+        selfdir = __dirname;
     } else {
         _output("outputpane.js モジュールが想定されていない読み込み方法で利用されています。\r\n");
         return;

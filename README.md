@@ -1,6 +1,6 @@
 # 秀丸マクロ jsmode 用の「HmOutputPane.dll」のラップモジュール
 
-![outputpane v1.0.9](https://img.shields.io/badge/outputpane-v1.0.9-6479ff.svg)
+![outputpane v1.1.0](https://img.shields.io/badge/outputpane-v1.1.0-6479ff.svg)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![Hidemaru 9.19](https://img.shields.io/badge/Hidemaru-v9.19-6479ff.svg)
 ![JScript](https://img.shields.io/badge/JScript-OK-6479ff.svg)
